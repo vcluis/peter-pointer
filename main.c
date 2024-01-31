@@ -30,6 +30,22 @@ int main() {
     printf("Dynamic allocated *ptr->value: %d\n", *integer);
     free(integer);
 
+    // Double pointer
+    int **dptr = &ptr;
+    printf("**dptr: %p\n", dptr); // Prints *ptr memory address
+    printf("**dptr value: %p\n", *dptr); // Prints *ptr value
+
+    **dptr = 21;
+    printf("Updated int value: %d\n", value);
+    
+    // Pointer to array
+    int arr[5] = {0, 1, 2, 3, 4};
+    int *arrPtr = arr;
+    for(int i = 0; i < 5; i++) {
+        printf("Array (plain): %d\n", *arrPtr);
+        *arrPtr = *arrPtr + 1;
+    }
+
     // Dynamic array
     int size = 5;
     int *integers = getDynamicIntArray(size);
@@ -40,25 +56,14 @@ int main() {
     }
     free(integers);
 
-    // Double pointer
-    int **dptr = &ptr;
-    printf("**dptr: %p\n", dptr); // Prints *ptr memory address
-    printf("**dptr value: %p\n", *dptr); // Prints *ptr value
-
-    **dptr = 21;
-    printf("Updated int value: %d\n", value);
-
-    int arr[5] = {0, 1, 2, 3, 4};
-    int *arrPtr = arr;
-    for(int i = 0; i < 5; i++) {
-        printf("Array (plain): %d\n", *arrPtr);
-        *arrPtr = *arrPtr + 1;
-    }
-
+    // 2 dimension dynamic array
     int m = 2, n = 2;
     int **multiArray = get2DDynamicArray(m, n);
     initialize2DArray(multiArray, m, n);
     print2DArray(multiArray, m, n);
+
+    for(int i = 0; i < m; i++)
+        free(multiArray[i]);
 
     return 0;
 }
