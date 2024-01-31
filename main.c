@@ -64,6 +64,7 @@ int main() {
 
     for(int i = 0; i < m; i++)
         free(multiArray[i]);
+    free(multiArray);
 
     return 0;
 }
